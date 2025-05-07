@@ -55,61 +55,41 @@ function updateStatusBar() {
     }
 }
 
+function updateBatteryIcon(level) {
+    const batteryIcon = document.querySelector('.battery-icon');
+    if (!batteryIcon) return;
+    
+    if (level >= 90) {
+        batteryIcon.className = 'fas fa-battery-full battery-icon';
+    } else if (level >= 60) {
+        batteryIcon.className = 'fas fa-battery-three-quarters battery-icon';
+    } else if (level >= 40) {
+        batteryIcon.className = 'fas fa-battery-half battery-icon';
+    } else if (level >= 20) {
+        batteryIcon.className = 'fas fa-battery-quarter battery-icon';
+    } else {
+        batteryIcon.className = 'fas fa-battery-empty battery-icon';
+    }
+}
+
 function updateBatteryLevel(level) {
-    const batteryLevel = document.getElementById('batteryLevel');
+    batteryLevel = level;
     const batteryLevelText = document.getElementById('batteryLevelText');
-    const deviceSelector = document.getElementById('deviceSelector');
-    const selectedDevice = deviceSelector.value;
     
     // Actualizar el texto del nivel
     batteryLevelText.textContent = `${level}%`;
     
-    if (selectedDevice === 'samsung') {
-        // Para Samsung, actualizar el SVG
-        const batteryLevel = document.querySelector('#battery-level');
-        const batteryText = document.querySelector('#battery-text');
-        const fastCharging = document.querySelector('#fast-charging');
-        const wirelessCharging = document.querySelector('#wireless-charging');
-        
-        if (batteryLevel && batteryText) {
-            // Actualizar el nivel de batería (usando clip-path)
-            const percentage = level / 100;
-            const path = `M4 12C4 7.58172 7.58172 4 12 4H${12 + (36 * percentage)}C${12 + (36 * percentage)} 4 ${12 + (36 * percentage)} 20 12 20H4V12Z`;
-            batteryLevel.setAttribute('d', path);
-            
-            // Actualizar el texto del porcentaje (solo números)
-            batteryText.textContent = `${level}`;
-            
-            // Cambiar el color según el nivel
-            if (level <= 15) {
-                batteryLevel.setAttribute('fill', '#ff3b30');
-            } else if (level <= 30) {
-                batteryLevel.setAttribute('fill', '#ff9500');
-            } else {
-                batteryLevel.setAttribute('fill', 'currentColor');
-            }
-            
-            // Mostrar/ocultar iconos de carga
-            if (level < 100) {
-                fastCharging.style.display = 'block';
-                wirelessCharging.style.display = 'none';
-            } else {
-                fastCharging.style.display = 'none';
-                wirelessCharging.style.display = 'none';
-            }
-        }
-    } else {
-        // Para otros dispositivos, usar el sistema actual
-        updateBatteryIcon(level);
-    }
+    // Actualizar el ícono de batería
+    updateBatteryIcon(level);
+    
+    // Actualizar la barra de estado
+    updateStatusBar();
 }
 
 function updateDeviceStyle() {
     const deviceSelector = document.getElementById('deviceSelector');
     const statusBar = document.querySelector('.status-bar');
     const selectedDevice = deviceSelector.value;
-    const samsungBattery = document.querySelector('.samsung-battery');
-    const defaultBattery = document.querySelector('.default-battery');
     
     // Remover todas las clases de dispositivo
     statusBar.classList.remove('samsung', 'xiaomi', 'motorola', 'pixel', 'oneplus', 'huawei');
@@ -117,15 +97,6 @@ function updateDeviceStyle() {
     // Agregar la clase del dispositivo seleccionado
     if (selectedDevice !== 'default') {
         statusBar.classList.add(selectedDevice);
-    }
-    
-    // Manejar la visualización de la batería
-    if (selectedDevice === 'samsung') {
-        samsungBattery.style.display = 'block';
-        defaultBattery.style.display = 'none';
-    } else {
-        samsungBattery.style.display = 'none';
-        defaultBattery.style.display = 'block';
     }
     
     // Actualizar el nivel de batería para aplicar los nuevos estilos

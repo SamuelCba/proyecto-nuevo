@@ -202,13 +202,27 @@ body {
     color: #222;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 12px;
 }
 .status-bar .status-time {
     font-weight: 500;
 }
+.status-bar .status-icons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
 .status-bar .status-icons i {
     font-size: 1rem;
     opacity: 0.7;
+}
+
+.status-bar .status-icons .battery-icon {
+    font-size: 1.2rem;
+    margin-left: 2px;
 }
 
 .profile-preview-mini {
@@ -819,4 +833,47 @@ body.night-mode .btn-whatsapp:hover {
 .status-bar.huawei .battery-icon::before {
     content: "\f240";
     font-family: "Font Awesome 5 Free";
+}
+
+/* Estilos para la batería de Samsung */
+.samsung-battery {
+    width: 24px;
+    height: 24px;
+    display: none;
+}
+
+.default-battery {
+    display: block;
+}
+
+/* Estilos para otros dispositivos */
+.status-bar.samsung,
+.status-bar.xiaomi,
+.status-bar.motorola,
+.status-bar.pixel,
+.status-bar.oneplus,
+.status-bar.huawei {
+    background: #000;
+    color: #fff;
+}
+
+.status-bar.samsung {
+    font-family: 'SamsungOne', sans-serif;
+}
+
+.status-bar.xiaomi,
+.status-bar.motorola {
+    font-family: 'Roboto', sans-serif;
+}
+
+.status-bar.pixel {
+    font-family: 'Google Sans', sans-serif;
+}
+
+.status-bar.oneplus {
+    font-family: 'OnePlus Sans', sans-serif;
+}
+
+.status-bar.huawei {
+    font-family: 'HarmonyOS Sans', sans-serif;
 } 
