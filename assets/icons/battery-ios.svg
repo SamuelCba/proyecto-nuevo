@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24" height="12" viewBox="0 0 24 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Contorno de la batería -->
+    <rect x="0.5" y="0.5" width="21" height="11" rx="2.5" stroke="currentColor" fill="none"/>
+    
+    <!-- Terminal positivo de la batería -->
+    <rect x="22" y="3.5" width="1.5" height="5" rx="0.5" fill="currentColor"/>
+    
+    <!-- Nivel de batería (se puede modificar con JavaScript) -->
+    <rect x="2" y="2" width="18" height="8" rx="1.5" fill="currentColor" id="battery-level"/>
+    
+    <!-- Rayo de carga (opcional) -->
+    <path d="M11 2L9 6H12L10 10" stroke="currentColor" stroke-width="1" fill="none" id="charging-icon" style="display: none;"/>
+</svg> 

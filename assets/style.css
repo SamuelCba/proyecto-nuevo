@@ -1,0 +1,822 @@
+/* Colores y variables principales */
+:root {
+    --whatsapp-green: #25D366;
+    --whatsapp-dark: #128C7E;
+    --chat-bg: #e5ddd5;
+    --ios-blue: #007AFF;
+    --ios-gray: #8E8E93;
+}
+
+body {
+    background-color: #f0f2f5;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.sidebar {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+}
+
+.btn-whatsapp {
+    background: var(--whatsapp-green);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+.btn-whatsapp:hover {
+    background: var(--whatsapp-dark);
+    color: white;
+}
+
+.back-button {
+    color: var(--whatsapp-dark);
+    text-decoration: none;
+    gap: 5px;
+    margin-bottom: 20px;
+}
+.back-button:hover {
+    color: var(--whatsapp-green);
+}
+
+.preview-container {
+    width: 360px;
+    height: 720px;
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+}
+
+.preview {
+    height: 100%;
+    background: var(--chat-bg);
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-header {
+    background: #f0f0f0;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.profile-preview {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.chat-messages {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.message {
+    display: block;
+    max-width: 65%;
+    min-width: 48px;
+    padding: 3px 12px;
+    margin: 1px 0;
+    border-radius: 8px;
+    position: relative;
+    word-break: break-word;
+    box-sizing: border-box;
+    clear: both;
+}
+
+.message p {
+    margin: 0;
+    padding: 0;
+    line-height: 1.4;
+    display: inline;
+}
+
+.message-sent {
+    background: #dcf8c6;
+    float: right;
+    margin-left: auto;
+    border-top-right-radius: 0;
+    border-radius: 8px 8px 0 8px;
+}
+.message-sent + .message-sent {
+    border-radius: 8px;
+}
+.message-received {
+    background: white;
+    float: left;
+    margin-right: auto;
+    border-top-left-radius: 0;
+    border-radius: 8px 8px 8px 0;
+}
+.message-received + .message-received {
+    border-radius: 8px;
+}
+
+@media (max-width: 991px) {
+    .preview-container {
+        margin: 0 auto 32px auto;
+    }
+    .sidebar {
+        margin-bottom: 32px;
+    }
+}
+
+@media (max-width: 600px) {
+    .preview-container {
+        width: 100vw;
+        max-width: 100%;
+        height: 500px;
+        border-radius: 0;
+    }
+    .chat-header {
+        border-radius: 0;
+    }
+    .sidebar {
+        border-radius: 0;
+    }
+}
+
+/* Fondos personalizados para el chat */
+.preview.bg-green {
+    background: #b9f5c1;
+}
+.preview.bg-blue {
+    background: #cce4ff;
+}
+.preview.bg-image1 {
+    background: url('https://www.transparenttextures.com/patterns/diamond-upholstery.png') repeat, #e5ddd5;
+}
+.preview.bg-image2 {
+    background: url('https://www.transparenttextures.com/patterns/food.png') repeat, #e5ddd5;
+}
+.preview.bg-white {
+    background: url('fondo-predeterminado-white.png') center center / cover no-repeat !important;
+}
+.preview.bg-dark {
+    background: url('fondo-predeterminado-dark.jpg') center center / cover no-repeat !important;
+}
+.preview.bg-custom {
+    background-size: cover !important;
+    background-position: center !important;
+}
+
+/* Ajuste: modo noche solo afecta cabecera y detalles si no es fondo dark */
+.preview.night-mode:not(.bg-dark):not(.bg-custom) {
+    background: #222 !important;
+}
+.preview.night-mode .chat-header {
+    background: #232d36 !important;
+    color: #e9edef;
+}
+.preview.night-mode .chat-messages {
+    background: transparent;
+}
+.preview.night-mode .message-received {
+    background: #202c33;
+    color: #e9edef;
+}
+.preview.night-mode .message-sent {
+    background: #005c4b;
+    color: #e9edef;
+}
+.preview.night-mode .profile-preview {
+    border: 2px solid #232d36;
+}
+
+.status-bar {
+    background: #ededed;
+    font-size: 0.85rem;
+    height: 24px;
+    color: #222;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+.status-bar .status-time {
+    font-weight: 500;
+}
+.status-bar .status-icons i {
+    font-size: 1rem;
+    opacity: 0.7;
+}
+
+.profile-preview-mini {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1.5px solid #ccc;
+}
+
+.chat-header {
+    min-height: 48px;
+    background: #f0f0f0;
+    border-bottom: 1px solid #e0e0e0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+.chat-header .fa-arrow-left {
+    font-size: 1.2rem;
+    color: #54656f;
+    cursor: pointer;
+}
+.chat-header .fa-video,
+.chat-header .fa-phone,
+.chat-header .fa-ellipsis-v {
+    font-size: 1.2rem;
+    color: #54656f;
+    cursor: pointer;
+    margin-left: 8px;
+}
+
+.chat-input-bar {
+    background: transparent !important;
+    border-top: none;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    gap: 0;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+}
+.chat-input-bar i {
+    font-size: 1.3rem;
+    color: #54656f;
+    opacity: 0.85;
+    cursor: pointer;
+}
+.chat-input-bar input.chat-input-text {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #e9edef;
+    font-size: 0.95rem;
+    box-shadow: none;
+    width: 100%;
+    padding: 8px 0;
+    line-height: 1.4;
+    height: auto;
+    min-height: 20px;
+}
+.chat-input-bar input.chat-input-text:focus {
+    outline: none;
+    border: none;
+}
+.btn-audio, .btn-send {
+    background: var(--whatsapp-green) !important;
+    color: #fff;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    font-size: 1.3rem;
+    transition: all 0.2s;
+    margin-left: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    flex-shrink: 0;
+}
+.btn-audio:hover, .btn-send:hover {
+    background: var(--whatsapp-dark) !important;
+}
+
+.btn-send {
+    display: none;
+}
+
+.chat-input-bar input.chat-input-text:not(:placeholder-shown) ~ .btn-audio {
+    display: none !important;
+}
+
+.chat-input-bar input.chat-input-text:not(:placeholder-shown) ~ .btn-send {
+    display: flex !important;
+    background: var(--whatsapp-green) !important;
+}
+
+/* Asegurar que el ícono de enviar tenga el mismo estilo que el micrófono */
+.btn-send img {
+    height: 22px;
+    width: 22px;
+    filter: none;
+}
+
+/* Ajuste para modo noche WhatsApp */
+.preview.night-mode .status-bar {
+    background: #232d36;
+    color: #e9edef;
+}
+.preview.night-mode .chat-header {
+    background: #232d36 !important;
+    color: #e9edef;
+}
+.preview.night-mode .chat-header .fa-arrow-left,
+.preview.night-mode .chat-header .fa-video,
+.preview.night-mode .chat-header .fa-phone,
+.preview.night-mode .chat-header .fa-ellipsis-v {
+    color: #e9edef;
+}
+.preview.night-mode .chat-input-bar {
+    background: #232d36;
+    border-color: #232d36;
+}
+.preview.night-mode .chat-input-bar input {
+    background: #202c33;
+    color: #e9edef;
+    border: 1px solid #232d36;
+}
+.preview.night-mode .chat-input-bar i {
+    color: #e9edef;
+}
+
+/* Hora y ticks en los mensajes */
+.message-meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 0.78em;
+    color: #8696a0;
+    margin-left: 4px;
+    padding: 0;
+    float: right;
+    clear: both;
+    margin-top: 4px;
+}
+.message .fa-check,
+.message .fa-check-double {
+    font-size: 0.95em;
+    margin-left: 2px;
+}
+.message .fa-check-double.read {
+    color: #53bdeb;
+}
+
+/* Hora de la cabecera */
+#headerTimePreview {
+    font-size: 0.95em;
+    margin-left: 4px;
+    color: #8696a0;
+}
+
+@media (max-width: 600px) {
+    .chat-input-bar input.chat-input-text {
+        font-size: 0.95rem;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .btn-audio, .btn-send {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+    }
+}
+
+.input-bubble {
+    background: #232d36;
+    border-radius: 30px;
+    min-height: 36px;
+    height: auto;
+    margin-right: 0;
+    flex: 1 1 auto;
+    box-shadow: none;
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+}
+.chat-input-bar input.chat-input-text {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #e9edef;
+    font-size: 0.95rem;
+    box-shadow: none;
+    width: 100%;
+    padding: 8px 0;
+    line-height: 1.4;
+}
+
+.input-bubble i, .input-bubble img {
+    opacity: 0.85;
+    flex-shrink: 0;
+    margin: 0 4px;
+}
+
+/* Modo claro */
+.preview:not(.night-mode) .input-bubble {
+    background: #fff;
+    min-height: 36px;
+    height: auto;
+    margin-right: 0;
+}
+.preview:not(.night-mode) .chat-input-bar input.chat-input-text {
+    color: #222;
+}
+
+/* Modo noche */
+.preview.night-mode .input-bubble {
+    background: #232d36;
+    min-height: 36px;
+    height: auto;
+    margin-right: 0;
+}
+.preview.night-mode .chat-input-bar input.chat-input-text {
+    color: #e9edef;
+}
+
+.preview.night-mode #icon-clip,
+.preview.night-mode #icon-camara-bar,
+.preview.night-mode #icon-video,
+.preview.night-mode #icon-call {
+    filter: invert(1);
+}
+
+.preview.night-mode .chat-header .fa-arrow-left {
+    color: #e9edef;
+}
+
+/* Estilos para el switch de modo noche */
+.theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.theme-switch {
+    display: inline-block;
+    height: 34px;
+    position: relative;
+    width: 60px;
+}
+
+.theme-switch input {
+    display: none;
+}
+
+.slider {
+    background-color: #ccc;
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: .4s;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5px;
+}
+
+.slider:before {
+    background-color: #fff;
+    bottom: 4px;
+    content: "";
+    height: 26px;
+    left: 4px;
+    position: absolute;
+    transition: .4s;
+    width: 26px;
+    z-index: 2;
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+.slider .fa-sun {
+    color: #f1c40f;
+    font-size: 16px;
+    transition: .4s;
+    opacity: 1;
+}
+
+.slider .fa-moon {
+    color: #f1c40f;
+    font-size: 16px;
+    transition: .4s;
+    opacity: 0;
+}
+
+input:checked + .slider {
+    background-color: #2c3e50;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+input:checked + .slider .fa-sun {
+    opacity: 0;
+}
+
+input:checked + .slider .fa-moon {
+    opacity: 1;
+}
+
+/* Transición suave para el modo noche */
+.preview,
+.sidebar,
+.chat-header,
+.chat-messages,
+.message,
+.input-bubble,
+.btn-audio,
+.btn-send {
+    transition: all 0.3s ease;
+}
+
+/* Modo noche para toda la página */
+body.night-mode {
+    background-color: #1a1a1a;
+}
+
+body.night-mode .sidebar {
+    background: #2c3e50;
+    color: #fff;
+}
+
+body.night-mode .form-control {
+    background-color: #34495e;
+    border-color: #2c3e50;
+    color: #fff;
+}
+
+body.night-mode .form-control:focus {
+    background-color: #34495e;
+    border-color: #3498db;
+    color: #fff;
+}
+
+body.night-mode label {
+    color: #fff;
+}
+
+body.night-mode .btn-whatsapp {
+    background: var(--whatsapp-dark);
+}
+
+body.night-mode .btn-whatsapp:hover {
+    background: var(--whatsapp-green);
+}
+
+/* Estilos para la barra de estado según OS */
+.status-bar.android {
+    background: #ededed;
+    color: #222;
+    font-family: 'Roboto', sans-serif;
+}
+
+.status-bar.ios {
+    background: #000;
+    color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.status-bar.ios .status-time {
+    font-weight: 600;
+}
+
+.status-bar.ios .status-icons i {
+    font-size: 0.9rem;
+}
+
+/* Estilos para el teclado virtual */
+.virtual-keyboard {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #d1d5db;
+    padding: 8px;
+    border-top: 1px solid #9ca3af;
+    transition: transform 0.3s ease;
+}
+
+.keyboard-row {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    margin-bottom: 4px;
+}
+
+.key {
+    background: #fff;
+    border: 1px solid #9ca3af;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 1.2rem;
+    min-width: 30px;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.2s;
+}
+
+.key:hover {
+    background: #f3f4f6;
+}
+
+.key:active {
+    background: #e5e7eb;
+}
+
+.key.shift {
+    background: #e5e7eb;
+}
+
+.key.backspace {
+    background: #e5e7eb;
+    min-width: 60px;
+}
+
+.key.space {
+    flex: 1;
+    min-width: 120px;
+}
+
+.key.enter {
+    background: var(--whatsapp-green);
+    color: white;
+    min-width: 80px;
+}
+
+/* Ajustes para iOS */
+.preview.ios .status-bar {
+    background: #000;
+    color: #fff;
+}
+
+.preview.ios .chat-header {
+    background: #f2f2f7;
+    border-bottom: 1px solid #c7c7cc;
+}
+
+.preview.ios .message-sent {
+    background: #0b93f6;
+    color: white;
+}
+
+.preview.ios .message-received {
+    background: #e5e5ea;
+    color: #000;
+}
+
+.preview.ios .chat-input-bar {
+    background: #f2f2f7;
+    border-top: 1px solid #c7c7cc;
+}
+
+.preview.ios .input-bubble {
+    background: #fff;
+    border: 1px solid #c7c7cc;
+}
+
+/* Ajustes para Android */
+.preview.android .status-bar {
+    background: #ededed;
+    color: #222;
+}
+
+.preview.android .chat-header {
+    background: #f0f0f0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.preview.android .message-sent {
+    background: #dcf8c6;
+    color: #000;
+}
+
+.preview.android .message-received {
+    background: #fff;
+    color: #000;
+}
+
+.preview.android .chat-input-bar {
+    background: #f0f0f0;
+    border-top: 1px solid #e0e0e0;
+}
+
+.preview.android .input-bubble {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+}
+
+/* Estilos para la descripción del chat */
+.chat-description {
+    background: rgba(240, 240, 240, 0.5);
+    border-bottom: 1px solid rgba(224, 224, 224, 0.3);
+    font-size: 0.7rem;
+    color: #54656f;
+    text-align: center;
+    padding: 0 12px;
+    margin: 0;
+    min-height: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 0.8;
+}
+
+.preview.android .chat-description {
+    background: rgba(240, 240, 240, 0.5);
+    border-bottom: 1px solid rgba(224, 224, 224, 0.3);
+}
+
+.preview.ios .chat-description {
+    background: rgba(242, 242, 247, 0.5);
+    border-bottom: 1px solid rgba(199, 199, 204, 0.3);
+}
+
+.preview.night-mode .chat-description {
+    background: rgba(35, 45, 54, 0.5);
+    border-bottom: 1px solid rgba(44, 62, 80, 0.3);
+    color: #e9edef;
+}
+
+.chat-description.hidden {
+    display: none;
+}
+
+/* Estilos para la barra de estado según dispositivo */
+.status-bar.samsung {
+    background: #000;
+    color: #fff;
+    font-family: 'SamsungOne', sans-serif;
+}
+
+.status-bar.xiaomi {
+    background: #000;
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+}
+
+.status-bar.motorola {
+    background: #000;
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+}
+
+.status-bar.pixel {
+    background: #000;
+    color: #fff;
+    font-family: 'Google Sans', sans-serif;
+}
+
+.status-bar.oneplus {
+    background: #000;
+    color: #fff;
+    font-family: 'OnePlus Sans', sans-serif;
+}
+
+.status-bar.huawei {
+    background: #000;
+    color: #fff;
+    font-family: 'HarmonyOS Sans', sans-serif;
+}
+
+/* Iconos específicos por dispositivo */
+.status-bar.samsung .battery-icon::before {
+    content: "\f240";
+    font-family: "Font Awesome 5 Free";
+}
+
+.status-bar.xiaomi .battery-icon::before {
+    content: "\f240";
+    font-family: "Font Awesome 5 Free";
+}
+
+.status-bar.motorola .battery-icon::before {
+    content: "\f240";
+    font-family: "Font Awesome 5 Free";
+}
+
+.status-bar.pixel .battery-icon::before {
+    content: "\f240";
+    font-family: "Font Awesome 5 Free";
+}
+
+.status-bar.oneplus .battery-icon::before {
+    content: "\f240";
+    font-family: "Font Awesome 5 Free";
+}
+
+.status-bar.huawei .battery-icon::before {
+    content: "\f240";
+    font-family: "Font Awesome 5 Free";
+} 
